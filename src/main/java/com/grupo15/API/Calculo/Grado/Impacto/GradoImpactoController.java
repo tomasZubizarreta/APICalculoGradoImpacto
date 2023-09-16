@@ -2,22 +2,24 @@ package com.grupo15.API.Calculo.Grado.Impacto;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.grupo15.API.Calculo.Grado.Impacto.Resultado;
 
 
 
 @RestController
 @RequestMapping("/api")
 public class GradoImpactoController {
-    private int resultado;
+    private Resultado resultado;
 
     @GetMapping("/calcularImpacto {entidad} {tiempoResolucionIncidente} {cantIncidentesNoResueltos} {cnf} {totalPersonasImpactadas}")
-    public ResponseEntity<Integer> calculateImpactGet(@RequestBody String entidad, Integer tiempoResolucionIncidente, Integer cantIncidentesNoResueltos, Integer cnf, Integer totalPersonasImpactadas) {
-        resultado = (tiempoResolucionIncidente + cantIncidentesNoResueltos * cnf) * totalPersonasImpactadas;
-        return ResponseEntity.ok(resultado);
+    public ResponseEntity<Void> calculateImpactGet(@RequestBody String entidad, Integer tiempoResolucionIncidente, Integer cantIncidentesNoResueltos, Integer cnf, Integer totalPersonasImpactadas) {
+        resultado.resultado = (tiempoResolucionIncidente + cantIncidentesNoResueltos * cnf) * totalPersonasImpactadas;
+        resultado.entidadResultado = entidad;
+        return (ResponseEntity<Void>) ResponseEntity.ok();
     }
 
     @PostMapping("/calcularImpacto")
-    public ResponseEntity<Integer> calculateImpactPost() {
+    public ResponseEntity<Resultado> calculateImpactPost() {
         return ResponseEntity.ok(resultado);
     }
 }
