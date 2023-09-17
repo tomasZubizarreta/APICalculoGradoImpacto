@@ -1,0 +1,148 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API de Cálculo de Grado de Impacto",
+    "description": "API para calcular el grado de impacto"
+  },
+  "paths": {
+    "/api/calcularImpacto": {
+      "get": {
+        "summary": "Obtener todos los resultados de cálculo de impacto",
+        "responses": {
+          "200": {
+            "description": "Lista de resultados de cálculo de impacto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntidadValor"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No se encontraron resultados",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Calcular el impacto de una entidad",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ListadoValores"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cálculo exitoso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No se pudo calcular el impacto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error inesperado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EntidadValor": {
+        "type": "object",
+        "properties": {
+          "entidad_id": {
+            "type": "integer",
+            "description": "ID de la entidad"
+          },
+          "gradoImpacto": {
+            "type": "number",
+            "description": "Grado de impacto calculado"
+          }
+        }
+      },
+      "ListadoValores": {
+        "type": "object",
+        "properties": {
+          "valoresPorEntidad": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValoresFormula"
+            },
+            "description": "Lista de valores por entidad"
+          }
+        }
+      },
+      "ValoresFormula": {
+        "type": "object",
+        "properties": {
+          "entidad_id": {
+            "type": "integer",
+            "description": "ID de la entidad"
+          },
+          "tiempoResolucionIncidente": {
+            "type": "integer",
+            "description": "Tiempo de resolución del incidente"
+          },
+          "cantIncidentesNoResueltos": {
+            "type": "integer",
+            "description": "Cantidad de incidentes no resueltos"
+          },
+          "cnf": {
+            "type": "integer",
+            "description": "Valor de CNF"
+          },
+          "totalPersonasImpactadas": {
+            "type": "integer",
+            "description": "Total de personas impactadas"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Mensaje de error legible por humanos"
+          }
+        }
+      }
+    }
+  }
+}
