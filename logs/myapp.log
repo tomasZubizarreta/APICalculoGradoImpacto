@@ -1412,3 +1412,6 @@ Caused by: org.springframework.web.util.pattern.PatternParseException: Expected 
 2023-09-17T03:17:56.392-03:00  INFO 9612 --- [main] I.ApiCalculoGradoImpactoApplicationTests : Starting ApiCalculoGradoImpactoApplicationTests using Java 17.0.6 with PID 9612 (started by lucia in C:\Users\lucia\Documentos\Univ\APICalculoGradoImpacto)
 2023-09-17T03:17:56.396-03:00  INFO 9612 --- [main] I.ApiCalculoGradoImpactoApplicationTests : No active profile set, falling back to 1 default profile: "default"
 2023-09-17T03:17:57.646-03:00  INFO 9612 --- [main] I.ApiCalculoGradoImpactoApplicationTests : Started ApiCalculoGradoImpactoApplicationTests in 1.546 seconds (process running for 2.471)
+2023-09-17T12:18:50.559-03:00  INFO 11328 --- [main] I.ApiCalculoGradoImpactoApplicationTests : Starting ApiCalculoGradoImpactoApplicationTests using Java 17.0.6 with PID 11328 (started by lucia in C:\Users\lucia\Documentos\Univ\APICalculoGradoImpacto)
+2023-09-17T12:18:50.561-03:00  INFO 11328 --- [main] I.ApiCalculoGradoImpactoApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2023-09-17T12:18:52.049-03:00  INFO 11328 --- [main] I.ApiCalculoGradoImpactoApplicationTests : Started ApiCalculoGradoImpactoApplicationTests in 1.821 seconds (process running for 2.877)
