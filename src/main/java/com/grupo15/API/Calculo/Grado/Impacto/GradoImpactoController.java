@@ -2,7 +2,8 @@ package com.grupo15.API.Calculo.Grado.Impacto;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -10,14 +11,20 @@ import org.springframework.web.bind.annotation.*;
 public class GradoImpactoController {
     private int resultado;
 
-    @GetMapping("/calcularImpacto {entidad} {tiempoResolucionIncidente} {cantIncidentesNoResueltos} {cnf} {totalPersonasImpactadas}")
-    public ResponseEntity<Integer> calculateImpactGet(@RequestBody String entidad, Integer tiempoResolucionIncidente, Integer cantIncidentesNoResueltos, Integer cnf, Integer totalPersonasImpactadas) {
-        resultado = (tiempoResolucionIncidente + cantIncidentesNoResueltos * cnf) * totalPersonasImpactadas;
-        return ResponseEntity.ok(resultado);
+    @GetMapping("/calcularImpacto")
+    public List<EntidadValor> calculateImpactGet() {
+        return RepositorioResultados.getInstance().obtenerTodosLosResultadosOrdenados();
     }
 
     @PostMapping("/calcularImpacto")
-    public ResponseEntity<Integer> calculateImpactPost() {
+    public ResponseEntity<Integer> calculateImpactPost(@RequestBody ListadoValores listado) {
+        for (ValoresFormula valoresFormula:listado.getValoresPorEntidad()) {
+            double gradoImpacto = CalculadoraGradoImpacto.getInstance().calcularGradoImpacto(valoresFormula.tiempoResolucionIncidente,
+                valoresFormula.cantIncidentesNoResueltos,
+                valoresFormula.cnf,
+                valoresFormula.totalPersonasImpactadas);
+            RepositorioResultados.getInstance().guardarResultado(new EntidadValor(valoresFormula.entidad_id, gradoImpacto));
+        }
         return ResponseEntity.ok(resultado);
     }
 }
