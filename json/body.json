@@ -1,0 +1,25 @@
+{"valoresPorEntidad":
+[
+  {
+    "entidad_id" : 1,
+    "tiempoResolucionIncidente" : 1,
+    "cantIncidentesNoResueltos" : 1,
+    "cnf" : 1,
+    "totalPersonasImpactadas" : 1
+  },
+  {
+    "entidad_id" : 3,
+    "tiempoResolucionIncidente" : 1,
+    "cantIncidentesNoResueltos" : 3,
+    "cnf" : 1,
+    "totalPersonasImpactadas" : 1
+  },
+  {
+    "entidad_id" : 2,
+    "tiempoResolucionIncidente" : 1,
+    "cantIncidentesNoResueltos" : 2,
+    "cnf" : 1,
+    "totalPersonasImpactadas" : 1
+  }
+]
+}
