@@ -53,7 +53,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "integer"
+                  "type": "string"
                 }
               }
             }

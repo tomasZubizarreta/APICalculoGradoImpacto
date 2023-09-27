@@ -20,7 +20,7 @@ public class GradoImpactoController {
     }
 
     @PostMapping("/calcularImpacto")
-    public ResponseEntity<Integer> calculateImpactPost(@RequestBody ListadoValores listado) {
+    public ResponseEntity<String> calculateImpactPost(@RequestBody ListadoValores listado) {
         for (ValoresFormula valoresFormula:listado.getValoresPorEntidad()) {
             double gradoImpacto = CalculadoraGradoImpacto.getInstance().calcularGradoImpacto(valoresFormula.tiempoResolucionIncidente,
                     valoresFormula.cantIncidentesNoResueltos,
@@ -28,7 +28,7 @@ public class GradoImpactoController {
                     valoresFormula.totalPersonasImpactadas);
             RepositorioResultados.getInstance().guardarResultado(new EntidadValor(valoresFormula.entidad_id, gradoImpacto));
         }
-        return ResponseEntity.ok(resultado);
+        return ResponseEntity.ok("Valores de entidades recibidos correctamente.");
     }
 }
 
